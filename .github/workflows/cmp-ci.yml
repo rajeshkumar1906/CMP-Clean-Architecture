@@ -27,3 +27,12 @@ jobs:
         with:
           name: android-apk
           path: composeApp/build/outputs/apk/debug/*.apk
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Distribute APK to Firebase
+        run: |
+          firebase appdistribution:distribute \
+          composeApp/build/outputs/apk/debug/*.apk \
+          --app ${{ secrets.FIREBASE_ANDROID_APP_ID }} \
+          --token ${{ secrets.FIREBASE_TOKEN }}
