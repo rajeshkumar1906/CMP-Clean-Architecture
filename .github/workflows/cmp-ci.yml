@@ -34,5 +34,7 @@ jobs:
         run: |
           firebase appdistribution:distribute \
           composeApp/build/outputs/apk/debug/*.apk \
-          --app ${{ secrets.FIREBASE_ANDROID_APP_ID }} \
-          --token ${{ secrets.FIREBASE_TOKEN }}
+#          --app ${{ secrets.FIREBASE_ANDROID_APP_ID }} \
+          --app 1:489175711851:android:223c3133e1a28c7844312e\
+#          --token ${{ secrets.FIREBASE_TOKEN }}
+          --token 1//0gsUX1YTcwOqUCgYIARAAGBASNwF-L9IrjVaxNB-kDH06DPEYMre_SjQZMsTeZJm0GKj4SZj-xUPg7jOymMeXglcHGmLoet8oG8Q
