@@ -1,7 +1,7 @@
 package com.rajesh.cmpcleanarchitecture.di
 
-import com.rajesh.cmpcleanarchitecture.data.repository.ProductRepositoryImpl
-import com.rajesh.cmpcleanarchitecture.domain.repository.ProductRepository
+import com.rajesh.cmpcleanarchitecture.data.repository.NewsRepositoryImpl
+import com.rajesh.cmpcleanarchitecture.domain.repository.NewsRepository
 import com.rajesh.cmpcleanarchitecture.domain.usecase.GetProductsUseCase
 import com.rajesh.cmpcleanarchitecture.presentation.screen.ProductViewModel
 import io.ktor.client.HttpClient
@@ -30,7 +30,7 @@ val dataModule = module {
             }
         }
     }
-    singleOf(::ProductRepositoryImpl) { bind<ProductRepository>() }
+    singleOf(::NewsRepositoryImpl) { bind<NewsRepository>() }
 }
 
 val domainModule = module {
