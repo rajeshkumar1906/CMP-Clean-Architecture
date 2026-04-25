@@ -4,6 +4,7 @@ import com.rajesh.cmpcleanarchitecture.data.repository.NewsRepositoryImpl
 import com.rajesh.cmpcleanarchitecture.domain.repository.NewsRepository
 import com.rajesh.cmpcleanarchitecture.domain.usecase.GetProductsUseCase
 import com.rajesh.cmpcleanarchitecture.presentation.screen.ProductViewModel
+import com.rajesh.cmpcleanarchitecture.presentation.screen.news.NewsViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
@@ -39,6 +40,7 @@ val domainModule = module {
 
 val viewModelModule = module {
     viewModelOf(::ProductViewModel)
+    viewModelOf(::NewsViewModel)
 }
 
 fun appModule() = listOf(dataModule, domainModule, viewModelModule)
