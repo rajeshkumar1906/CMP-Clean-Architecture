@@ -25,10 +25,20 @@ class NetworkClient(
         queryParams: Map<String, String> = emptyMap(),
     ): T {
         val url = environmentConfig.baseUrl(serviceUrl) + path
-        return client.get(url) {
-            queryParams.forEach { (k, v) ->
-                parameter(k, v)
+        logger.debug("Requesting URL: $url with params: $queryParams")
+        return try {
+            val response = client.get(url) {
+                queryParams.forEach { (k, v) ->
+                    parameter(k, v)
+                }
             }
-        }.body<T>()
+            logger.debug("Response received with status: ${response.status}")
+            val body = response.body<T>()
+            logger.debug("Body deserialized successfully")
+            body
+        } catch (e: Exception) {
+            logger.error("NetworkClient Error during GET: ${e.message}", e)
+            throw e
+        }
     }
 }

@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NewsDto(
     @SerialName("nextPage")
-    val nextPage: String = "",
+    val nextPage: String? = null,
     @SerialName("results")
-    val results: List<Result> = listOf(),
+    val results: List<Result>? = null,
     @SerialName("status")
-    val status: String = "",
+    val status: String? = null,
     @SerialName("totalResults")
-    val totalResults: Int = 0
+    val totalResults: Int? = null
 )

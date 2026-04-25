@@ -26,12 +26,19 @@ class NewsViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             try{
-                val news = useCase.invoke()
-                news.collectLatest {
-                    _state.update { it.copy(news = it.news, isLoading = false) }
+                val newsResult = useCase.invoke()
+                newsResult.collectLatest { result ->
+                    when (result) {
+                        is com.rajesh.cmpcleanarchitecture.domain.handlers.Result.Success -> {
+                            _state.update { it.copy(news = result.data, isLoading = false) }
+                        }
+                        is com.rajesh.cmpcleanarchitecture.domain.handlers.Result.Error -> {
+                            _state.update { it.copy(error = result.error.toString(), isLoading = false) }
+                        }
+                    }
                 }
             }catch (e: Exception){
-                _state.update { it.copy(isLoading = false) }
+                _state.update { it.copy(isLoading = false, error = e.toString()) }
             }
         }
 
